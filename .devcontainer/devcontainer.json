@@ -1,0 +1,21 @@
+{
+	"name": "Dev Container",
+	"dockerComposeFile": "docker-compose.yaml",
+	"workspaceFolder": "/usr/share/nginx/",
+	"service": "site",
+	"mounts": [
+		"source=${localWorkspaceFolder}/nginx.conf,target=/etc/nginx/conf.d/default.conf,type=bind",
+		"source=${localWorkspaceFolder},target=/usr/share/nginx,type=bind"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"SanderRonde.phpstan-vscode",
+				"DEVSENSE.profiler-php-vscode",
+				"DEVSENSE.phptools-vscode",
+				"DEVSENSE.intelli-php-vscode",
+				"DEVSENSE.composer-php-vscode"
+			]
+		}
+	}
+}
