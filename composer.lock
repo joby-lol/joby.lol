@@ -4,8 +4,293 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "afc8f7871f1148d8b419be087a604fb9",
-    "packages": [],
+    "content-hash": "5cc6741216c2c8e87b6669082bdd8192",
+    "packages": [
+        {
+            "name": "joby/smol-context",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joby-lol/smol-context.git",
+                "reference": "0d79bd13507e77ec05be209766c6045bb0cff5ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joby-lol/smol-context/zipball/0d79bd13507e77ec05be209766c6045bb0cff5ef",
+                "reference": "0d79bd13507e77ec05be209766c6045bb0cff5ef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3",
+                "psr/simple-cache": "^3.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "functions.php"
+                ],
+                "psr-4": {
+                    "Joby\\Smol\\Context\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joby Elliott",
+                    "email": "code@joby.lol"
+                }
+            ],
+            "description": "A lightweight DI container for PHP for global, low-config service and object registration. Use it to resolve and inject services, objects, and config values anywhere. You can execute callables with injected dependencies, instantiate objects with dependencies, and even include files using a unique DocBlock injection system.",
+            "support": {
+                "issues": "https://github.com/joby-lol/smol-context/issues",
+                "source": "https://github.com/joby-lol/smol-context/tree/main"
+            },
+            "time": "2026-01-10T20:46:48+00:00"
+        },
+        {
+            "name": "joby/smol-request",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joby-lol/smol-request.git",
+                "reference": "0c032269e28ba15fb9a1a17f4706aa70508557b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joby-lol/smol-request/zipball/0c032269e28ba15fb9a1a17f4706aa70508557b7",
+                "reference": "0c032269e28ba15fb9a1a17f4706aa70508557b7",
+                "shasum": ""
+            },
+            "require": {
+                "joby/smol-url": "^1.0@beta",
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Joby\\Smol\\Request\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joby Elliott",
+                    "email": "code@byjoby.com"
+                }
+            ],
+            "description": "A straightforward abstraction layer for retrieving information about and data from the current HTTP request.",
+            "support": {
+                "issues": "https://github.com/joby-lol/smol-request/issues",
+                "source": "https://github.com/joby-lol/smol-request/tree/main"
+            },
+            "time": "2025-12-18T19:33:59+00:00"
+        },
+        {
+            "name": "joby/smol-response",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joby-lol/smol-response.git",
+                "reference": "d7ef2c79f3612d7a6413397ae4c3dcfc258b0029"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joby-lol/smol-response/zipball/d7ef2c79f3612d7a6413397ae4c3dcfc258b0029",
+                "reference": "d7ef2c79f3612d7a6413397ae4c3dcfc258b0029",
+                "shasum": ""
+            },
+            "require": {
+                "joby/smol-url": "^1.0@beta",
+                "php": ">=8.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Joby\\Smol\\Response\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joby Elliott",
+                    "email": "code@byjoby.com"
+                }
+            ],
+            "description": "A straightforward abstraction layer for building and rendering HTTP responses.",
+            "support": {
+                "issues": "https://github.com/joby-lol/smol-response/issues",
+                "source": "https://github.com/joby-lol/smol-response/tree/main"
+            },
+            "time": "2026-01-07T18:22:00+00:00"
+        },
+        {
+            "name": "joby/smol-router",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joby-lol/smol-router.git",
+                "reference": "1c62a9be6ed24d1f50155b80fbd83bdd2cd09eaf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joby-lol/smol-router/zipball/1c62a9be6ed24d1f50155b80fbd83bdd2cd09eaf",
+                "reference": "1c62a9be6ed24d1f50155b80fbd83bdd2cd09eaf",
+                "shasum": ""
+            },
+            "require": {
+                "joby/smol-request": "dev-main",
+                "joby/smol-response": "dev-main",
+                "joby/smol-url": "@beta",
+                "php": ">=8.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Joby\\Smol\\Router\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joby Elliott",
+                    "email": "code@byjoby.com"
+                }
+            ],
+            "description": "A straightforward and unopinionated router for human-scale applications.",
+            "support": {
+                "issues": "https://github.com/joby-lol/smol-router/issues",
+                "source": "https://github.com/joby-lol/smol-router/tree/main"
+            },
+            "time": "2026-01-09T18:35:09+00:00"
+        },
+        {
+            "name": "joby/smol-url",
+            "version": "v1.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joby-lol/smol-url.git",
+                "reference": "d68fbd204a74e45299906679eb132540237b999d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joby-lol/smol-url/zipball/d68fbd204a74e45299906679eb132540237b999d",
+                "reference": "d68fbd204a74e45299906679eb132540237b999d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Joby\\Smol\\URL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joby Elliott",
+                    "email": "code@byjoby.com"
+                }
+            ],
+            "description": "A simple and lightweight extensible URL library designed for working with URLs in human-scale applications.",
+            "support": {
+                "issues": "https://github.com/joby-lol/smol-url/issues",
+                "source": "https://github.com/joby-lol/smol-url/tree/v1.0.0-beta3"
+            },
+            "time": "2026-01-09T20:47:46+00:00"
+        },
+        {
+            "name": "psr/simple-cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "reference": "764e0b3939f5ca87cb904f570ef9be2d78a07865",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
+            },
+            "time": "2021-10-29T13:26:27+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
@@ -63,7 +348,13 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "joby/smol-context": 20,
+        "joby/smol-request": 20,
+        "joby/smol-response": 20,
+        "joby/smol-router": 20,
+        "joby/smol-url": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

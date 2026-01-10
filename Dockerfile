@@ -1,7 +1,21 @@
-# Set up image to match dev environment
-FROM nginx:alpine
+# This image should match the development environment
+FROM php:8.4-apache
+RUN a2enmod rewrite
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Allow .htaccess to override settings in /var/www/html
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Begin production-specific setup
 
 # Copy only what is necessary for production
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY html/ /usr/share/nginx/html/
-COPY error/ /usr/share/nginx/error/
+COPY content/ /var/www/content/
+COPY html/ /var/www/html/
+COPY src/ /var/www/src/
+COPY composer.json /var/www/
+COPY composer.lock /var/www/
+
+# Install composer deps for production
+WORKDIR /var/www/
+RUN composer install --no-dev --optimize-autoloader

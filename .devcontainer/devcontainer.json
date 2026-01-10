@@ -1,11 +1,10 @@
 {
 	"name": "Dev Container",
 	"dockerComposeFile": "docker-compose.yaml",
-	"workspaceFolder": "/usr/share/nginx/",
+	"workspaceFolder": "/var/www",
 	"service": "site",
 	"mounts": [
-		"source=${localWorkspaceFolder}/nginx.conf,target=/etc/nginx/conf.d/default.conf,type=bind",
-		"source=${localWorkspaceFolder},target=/usr/share/nginx,type=bind"
+		"source=${localWorkspaceFolder},target=/var/www,type=bind"
 	],
 	"customizations": {
 		"vscode": {
