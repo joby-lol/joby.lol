@@ -9,6 +9,10 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Begin production-specific setup
 
+# Install git and unzip for composer dependencies
+RUN apt-get update
+RUN apt-get install -y git unzip
+
 # Copy only what is necessary for production
 COPY content/ /var/www/content/
 COPY html/ /var/www/html/
