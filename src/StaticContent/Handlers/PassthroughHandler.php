@@ -19,14 +19,22 @@ class PassthroughHandler
         $actual_path = StaticContent::actualPath($path);
         if ($actual_path === null)
             return null;
+        $cache_factory = Context::get(CacheControlFactory::class);
         $content = new FileContent($actual_path);
+        $type = $content->contentType();
+        if ($type === null || !str_starts_with($type, 'text/')) {
+            // media and weird files get public media cache control
+            $cache = $cache_factory->publicMedia();
+        }
+        else {
+            // text files get public page cache control
+            $cache = $cache_factory->publicPage();
+        }
         return new Response(
             200,
             $content,
             null,
-            str_starts_with($content->contentType(), 'text/')
-            ? Context::get(CacheControlFactory::class)->publicPage()
-            : Context::get(CacheControlFactory::class)->publicMedia(),
+            $cache,
         );
     }
 

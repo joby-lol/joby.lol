@@ -30,16 +30,25 @@ class PhpHandler
             }
             // for ContentInterface objects, wrap them in a Response
             elseif ($content instanceof ContentInterface) {
+                $cache_factory = Context::get(CacheControlFactory::class);
+                $type = $content->contentType();
+                if ($type === null || !str_starts_with($type, 'text/')) {
+                    // media and weird files get public media cache control
+                    $cache = $cache_factory->publicMedia();
+                }
+                else {
+                    // text files get public page cache control
+                    $cache = $cache_factory->publicPage();
+                }
                 return new Response(
                     200,
                     $content,
                     null,
-                    Context::get(CacheControlFactory::class)
-                        ->publicPage(),
+                    $cache
                 );
             }
             elseif (is_string($content) || $content instanceof Stringable) {
-                // If it's a string, wrap it in a StringContent
+                // If it's a string, wrap it in a StringContent and assume it's HTML
                 $content = new StringContent((string) $content);
                 $content->setFilename(basename($actual_path) . '.html');
                 return new Response(
