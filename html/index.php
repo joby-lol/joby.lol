@@ -1,6 +1,7 @@
 <?php
 
 use Joby\Leafcutter\CacheControlFactory;
+use Joby\Leafcutter\StaticContent\Handlers\DjotHandler;
 use Joby\Leafcutter\StaticContent\Handlers\PhpHandler;
 use Joby\Leafcutter\StaticContent\StaticContent;
 use Joby\Leafcutter\StaticContent\Handlers\PassthroughHandler;
@@ -37,6 +38,8 @@ $router = ctx(Router::class);
 // set up matchers/handlers for specific file extensions
 // $router->add($content->match(new SuffixMatcher('.md')), MarkdownHandler::handle(...));
 // $router->add($content->match(new SuffixMatcher('.html')), HtmlHandler::handle(...));
+$router->add($content->match(new SuffixMatcher('.dj')), DjotHandler::handle(...));
+$router->add($content->match(new SuffixMatcher('.djot')), DjotHandler::handle(...));
 $router->add($content->match(new SuffixMatcher('.php')), PhpHandler::handle(...));
 
 // fallback content matcher to just pass through media files

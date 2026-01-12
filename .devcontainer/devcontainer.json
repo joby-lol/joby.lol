@@ -13,7 +13,8 @@
 				"DEVSENSE.profiler-php-vscode",
 				"DEVSENSE.phptools-vscode",
 				"DEVSENSE.intelli-php-vscode",
-				"DEVSENSE.composer-php-vscode"
+				"DEVSENSE.composer-php-vscode",
+				"ryanabx.djot-vscode"
 			]
 		}
 	}

@@ -24,7 +24,8 @@
         "joby/smol-response": "dev-main",
         "joby/smol-router": "dev-main",
         "joby/smol-context": "dev-main",
-        "joby/smol-url": "@beta"
+        "joby/smol-url": "@beta",
+        "php-collective/djot": "^0.1.11"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1"

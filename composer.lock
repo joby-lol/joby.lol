@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cc6741216c2c8e87b6669082bdd8192",
+    "content-hash": "7fa99ddeeda6cf0cc08b214eb4a05cd3",
     "packages": [
         {
             "name": "joby/smol-context",
@@ -238,6 +238,67 @@
                 "source": "https://github.com/joby-lol/smol-url/tree/v1.0.0-beta3"
             },
             "time": "2026-01-09T20:47:46+00:00"
+        },
+        {
+            "name": "php-collective/djot",
+            "version": "0.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/djot-php.git",
+                "reference": "1ea357fe6be503c1437b33dc890d26f47fedfbad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/1ea357fe6be503c1437b33dc890d26f47fedfbad",
+                "reference": "1ea357fe6be503c1437b33dc890d26f47fedfbad",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "nikic/php-fuzzer": "^0.0.11",
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^2.1.32",
+                "phpunit/phpunit": "^11.0 || ^12.0"
+            },
+            "bin": [
+                "bin/djot"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Djot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Collective",
+                    "homepage": "https://github.com/php-collective"
+                }
+            ],
+            "description": "A PHP parser for Djot, a modern light markup language",
+            "keywords": [
+                "djot",
+                "markdown",
+                "markup",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/djot-php/issues",
+                "source": "https://github.com/php-collective/djot-php/tree/0.1.11"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dereuromark",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-12-15T22:05:02+00:00"
         },
         {
             "name": "psr/simple-cache",
