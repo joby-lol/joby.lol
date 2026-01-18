@@ -1,29 +1,32 @@
 <?php
 
-namespace Joby\Leafcutter\StaticContent\Handlers;
+namespace Joby\Leafcutter\Content\Handlers;
 
 use Djot\DjotConverter;
 use Joby\Leafcutter\CacheControlFactory;
-use Joby\Leafcutter\StaticContent\StaticContent;
+use Joby\Leafcutter\Content\ContentHandlerInterface;
+use Joby\Leafcutter\Content\ContentManager;
 use Joby\Smol\Context\Context;
+use Joby\Smol\Filesystem\File;
 use Joby\Smol\Response\Content\StringContent;
 use Joby\Smol\Response\Response;
 use RuntimeException;
 
-class DjotHandler
+class DjotHandler implements ContentHandlerInterface
 {
 
-    public static function handle(string $path): Response|null
+    public function __construct(
+        protected ContentManager $content,
+    ) {}
+
+    public function handle(File $file): Response|null
     {
-        $path = StaticContent::actualPath($path);
-        if ($path === null)
-            throw new RuntimeException("File not found: $path");
-        $content = file_get_contents($path);
+        $content = $file->read();
         if ($content === false)
-            throw new RuntimeException("Failed to read file: $path");
+            throw new RuntimeException("Failed to read content from file: $file");
         $content = static::converter()->convert($content);
         $content = new StringContent($content);
-        $content->setFilename(basename($path) . '.html');
+        $content->setFilename($file->filename() . '.html');
         return new Response(
             200,
             $content,

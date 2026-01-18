@@ -20,11 +20,9 @@
     ],
     "require": {
         "php": ">=8.4",
-        "joby/smol-request": "dev-main",
-        "joby/smol-response": "dev-main",
-        "joby/smol-router": "dev-main",
-        "joby/smol-context": "dev-main",
-        "joby/smol-url": "@beta",
+        "joby/smol-context": "^1.0",
+        "joby/smol-router": "^1.0",
+        "joby/smol-fs": "^1.0",
         "php-collective/djot": "^0.1.11"
     },
     "require-dev": {

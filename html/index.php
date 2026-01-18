@@ -1,53 +1,47 @@
 <?php
 
 use Joby\Leafcutter\CacheControlFactory;
-use Joby\Leafcutter\StaticContent\Handlers\DjotHandler;
-use Joby\Leafcutter\StaticContent\Handlers\PhpHandler;
-use Joby\Leafcutter\StaticContent\StaticContent;
-use Joby\Leafcutter\StaticContent\Handlers\PassthroughHandler;
-use Joby\Smol\Context\Config\DefaultConfig;
-use Joby\Smol\Request\Method;
+use Joby\Leafcutter\Content\ContentManager;
+use Joby\Leafcutter\Content\Handlers\DjotHandler;
+use Joby\Leafcutter\Content\Handlers\PassthroughHandler;
+use Joby\Leafcutter\Content\Handlers\PhpHandler;
+use Joby\Smol\Context\Context;
 use Joby\Smol\Request\Request;
 use Joby\Smol\Response\Renderer;
 use Joby\Smol\Response\Response;
 use Joby\Smol\Router\Matchers\CatchallMatcher;
-use Joby\Smol\Router\Matchers\SuffixMatcher;
-use Joby\Smol\Router\Priority;
 use Joby\Smol\Router\Router;
 
 include('../vendor/autoload.php');
 
 // register various things with the context
 // the context is basically a global static dependency injector
-$config = new DefaultConfig();
-ctx_register($config);
-ctx_register(CacheControlFactory::class);
-ctx_register(Renderer::class);
-ctx_register(Router::class);
-ctx_register(Request::current());
+Context::register(CacheControlFactory::class);
+Context::register(Renderer::class);
+Context::register(Router::class);
+Context::register(Request::current());
+Context::register(ContentManager::class);
+Context::register(DjotHandler::class);
+Context::register(PassthroughHandler::class);
+Context::register(PhpHandler::class);
 
 // set up static content provider
 // this is what pulls content from the content directories
-$content = new StaticContent();
-$content->addSourceDirectory(__DIR__ . '/../content');
-ctx_register($content);
+$content = Context::get(ContentManager::class);
+$content->addFilesystem(__DIR__ . '/../content');
+$content->addHandlerClass('djot', DjotHandler::class);
+$content->addHandlerClass('dj', DjotHandler::class);
+$content->addHandlerClass('php', PhpHandler::class);
+$content->addHandlerClass('txt', PassthroughHandler::class);
+$content->addHandlerClass('html', PassthroughHandler::class);
 
-// get router instance
-$router = ctx(Router::class);
-
-// set up matchers/handlers for specific file extensions
-// $router->add($content->match(new SuffixMatcher('.md')), MarkdownHandler::handle(...));
-// $router->add($content->match(new SuffixMatcher('.html')), HtmlHandler::handle(...));
-$router->add($content->match(new SuffixMatcher('.dj')), DjotHandler::handle(...));
-$router->add($content->match(new SuffixMatcher('.djot')), DjotHandler::handle(...));
-$router->add($content->match(new SuffixMatcher('.php')), PhpHandler::handle(...));
-
-// fallback content matcher to just pass through media files
-$router->add($content->match(new CatchallMatcher), PassthroughHandler::handle(...), Method::GET, Priority::LOW);
+// get router instance and configure
+$router = Context::get(Router::class);
+$router->add(new CatchallMatcher(), $content->route(...));
 
 // build response
-$response = ctx(Router::class)->run(ctx(Request::class));
-ctx_register($response);
+$response = Context::get(Router::class)->run(Context::get(Request::class));
+Context::register($response);
 
 // render response
-ctx(Renderer::class)->render(ctx(Response::class));
+Context::get(Renderer::class)->render(Context::get(Response::class));

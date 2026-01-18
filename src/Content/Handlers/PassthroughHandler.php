@@ -1,26 +1,29 @@
 <?php
 
-namespace Joby\Leafcutter\StaticContent\Handlers;
+namespace Joby\Leafcutter\Content\Handlers;
 
 use Joby\Leafcutter\CacheControlFactory;
-use Joby\Leafcutter\StaticContent\StaticContent;
+use Joby\Leafcutter\Content\ContentHandlerInterface;
+use Joby\Leafcutter\Content\ContentManager;
 use Joby\Smol\Context\Context;
+use Joby\Smol\Filesystem\File;
 use Joby\Smol\Response\Content\FileContent;
 use Joby\Smol\Response\Response;
 
 /**
  * Passes through a direct FileContent response for the requested file.
  */
-class PassthroughHandler
+class PassthroughHandler implements ContentHandlerInterface
 {
 
-    public static function handle(string $path): Response|null
+    public function __construct(
+        protected ContentManager $content,
+    ) {}
+
+    public function handle(File $file): Response|null
     {
-        $actual_path = StaticContent::actualPath($path);
-        if ($actual_path === null)
-            return null;
         $cache_factory = Context::get(CacheControlFactory::class);
-        $content = new FileContent($actual_path);
+        $content = new FileContent($file->path);
         $type = $content->contentType();
         if ($type === null || !str_starts_with($type, 'text/')) {
             // media and weird files get public media cache control

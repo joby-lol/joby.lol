@@ -9,14 +9,14 @@ class CacheControlFactory
 {
 
     public function __construct(
-        #[ConfigValue("cache.page_ttl")]
-        public int $page_ttl = 300,
-        #[ConfigValue("cache.page_stale_ttl")]
-        public int $page_stale_ttl = 86400,
-        #[ConfigValue("cache.media_ttl")]
-        public int $media_ttl = 86400,
-        #[ConfigValue("cache.media_stale_ttl")]
-        public int $media_stale_ttl = 86400 * 30,
+        #[ConfigValue("cache/page_ttl")]
+        public int|null $page_ttl = 300,
+        #[ConfigValue("cache/page_stale_ttl")]
+        public int|null $page_stale_ttl = 86400,
+        #[ConfigValue("cache/media_ttl")]
+        public int|null $media_ttl = 86400,
+        #[ConfigValue("cache/media_stale_ttl")]
+        public int|null $media_stale_ttl = 86400 * 30,
     ) {}
 
     public function publicPage(): CacheControl

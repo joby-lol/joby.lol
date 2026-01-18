@@ -3,6 +3,8 @@
 	"dockerComposeFile": "docker-compose.yaml",
 	"workspaceFolder": "/var/www",
 	"service": "site",
+	"postStartCommand": "apache2ctl graceful",
+	"postAttachCommand": "apache2ctl graceful",
 	"mounts": [
 		"source=${localWorkspaceFolder},target=/var/www,type=bind"
 	],
