@@ -60,12 +60,16 @@ class ContentManager
     /**
      * Register a content handler class for a given file extension.
      * 
-     * @param string $extension The file extension (without leading dot).
+     * @param string|string[] $extensions The file extension (without leading dot).
      * @param class-string<ContentHandlerInterface> $handler_class The content handler class to register.
      */
-    public function addHandlerClass(string $extension, string $handler_class): static
+    public function addHandlerClass(string|array $extensions, string $handler_class): static
     {
-        $this->handlers[$extension] = $handler_class;
+        if (!is_array($extensions))
+            $extensions = [$extensions];
+        foreach ($extensions as $extension) {
+            $this->handlers[$extension] = $handler_class;
+        }
         return $this;
     }
 

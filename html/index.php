@@ -29,11 +29,18 @@ Context::register(PhpHandler::class);
 // this is what pulls content from the content directories
 $content = Context::get(ContentManager::class);
 $content->addFilesystem(__DIR__ . '/../content');
-$content->addHandlerClass('djot', DjotHandler::class);
-$content->addHandlerClass('dj', DjotHandler::class);
-$content->addHandlerClass('php', PhpHandler::class);
-$content->addHandlerClass('txt', PassthroughHandler::class);
-$content->addHandlerClass('html', PassthroughHandler::class);
+$content->addHandlerClass(
+    ['djot', 'dj'],
+    DjotHandler::class,
+);
+$content->addHandlerClass(
+    'php',
+    PhpHandler::class,
+);
+$content->addHandlerClass(
+    ['txt', 'html', 'htm', 'png', 'ico', 'webmanifest', 'xml'],
+    PassthroughHandler::class,
+);
 
 // get router instance and configure
 $router = Context::get(Router::class);
